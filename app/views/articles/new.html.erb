@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-md-6">
+		<h1> New Article </h1>
+		<hr>
+		<%= form_for @article, :html => { :multipart => true} do |f| %>
+		<div class="form-group">
+			<%= f.label :image %>
+			<%= f.file_field :image %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: "form-control" %>
+			<%= @article.errors[:title].first unless @article.errors[:title].blank? %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :content %>
+			<%= f.text_area :content, class: "form-control", cols:30, rows:10 %>
+			<%= @article.errors[:content].first unless @article.errors[:content].blank? %>
+		</div>
+	
+		<div class="form-group">
+			<%= f.label :status %>
+			<%= f.radio_button :status, "active" %>
+			<%= label :article_status, 'active' %>
+			<%= f.radio_button :status, "off", :checked => true %>
+			<%= label :article_status, 'off' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.submit :submit, value: "Submit", class: "btn btn-primary" %>
+			<%= link_to "Back", articles_path, class: "btn btn-default" %>
+		</div>
+		<% end %>
+	<div>
+</div>

@@ -1,0 +1,30 @@
+<%= form_for @user do |f| %>
+
+<%= f.label :username %>
+<%= f.text_field :username %>
+<%= @user.errors[:username].first unless @user.errors[:username].blank? %>
+<br/>
+
+<%= f.label :email %>
+<%= f.text_field :email %>
+<%= @user.errors[:email].first unless @user.errors[:email].blank? %>
+<br/>
+
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= @user.errors[:password].first unless @user.errors[:password].blank? %>
+<br/>
+
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %>
+<%= @user.errors[:password_confirmation].first unless @user.errors[:password_confirmation].blank? %>
+<br/>
+
+<%= f.label :humanizer_answer, @user.humanizer_question %>
+<%= f.text_field :humanizer_answer %>
+<%= f.hidden_field :humanizer_question_id %>
+<br/>
+
+<%= f.submit %>
+
+<% end %>

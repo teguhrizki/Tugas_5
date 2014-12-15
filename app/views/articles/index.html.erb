@@ -1,0 +1,29 @@
+<h3>New Article</h3>
+<hr/>
+<div class="row">
+	<div class="col-md-8 col-md-offset-1">
+		<% @articles.each do |article| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4><%= article.title %></h4>
+			</div>
+			<div class="panel-body">
+				<p>
+				<%= link_to (image_tag article.image.url(:medium)), article, class: "img-thumbnail", alt: "Responsive image" %>
+				</p>
+				<p><%= article.content %></p>
+				<h5>Status : <%= article.status %></h5>
+			</div>
+			<div class="panel-footer">
+				<% if current_user %>
+				<%= link_to 'Edit', edit_article_path(article.id), class: "btn btn-sm btn-primary" %>
+				<%= link_to 'Delete', article_path(article.id), class: "btn btn-sm btn-default", method: "DELETE", data: {confirm: 'Delete this data ? '} %>
+				<% end %>
+			</div>
+		</div>
+		<hr/>
+		<% end %>
+		<<%= will_paginate @articles %>
+	</div>
+</div>
+

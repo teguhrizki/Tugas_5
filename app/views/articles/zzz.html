@@ -1,0 +1,19 @@
+<% @articles.each do |article| %>
+<%= image_tag article.image.url(:thumb) %>
+<h3><%= article.title %></h3>
+
+<p>
+	<%= article.content.truncate(50) %>
+	<%= link_to 'read more', article_path(article.id) %>
+</p>
+
+<h4>status : <%= article.status %></h4>
+
+<p>
+	<span><%= link_to 'edit', edit_article_path(article.id) %></span>
+	<span> | </span>
+	<span><%= link_to 'delete', article_path(article.id), method: "DELETE", data: {confirm: 'Delete this data ? '} %><span>
+</p>
+
+<hr/>
+<% end %>
