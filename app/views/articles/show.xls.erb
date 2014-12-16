@@ -1,6 +1,11 @@
-<%= @article.title %>
-<%= @article.content %>
-<%= @article.status %>
+<b>Title :</b><br>
+<%= @article.title %><br>
+<b>Content :</b><br>
+<%= @article.content %><br>
+<b>Status:</b><br>
+<%= @article.status %><br>
+
+<b>Comments :</b>
 <% @comments.each do |comment| %>
 
         <p>

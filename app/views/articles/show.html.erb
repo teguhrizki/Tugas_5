@@ -1,26 +1,31 @@
-<%= link_to "Export to Excel", article_path(format: "xls") %>
 <div id="pin_show" class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="panel panel-default">
 			<div class="panel-heading pin_image">
-				<%= image_tag @article.image.url(:thumb) %>
+				<%= @article.title %>
 			</div>
 			<div class="panel-body">
-				<h1><%= @article.title %></h1>
+				<p><%= image_tag @article.image.url(:medium), class: "img-thumbnail" %></p>
 				<p><%= @article.content %></p>
+				<p>Status
+					<%= @article.status %>
+				</p>
 			</div>
 			<div class="panel-footer">
 				<div class="row">
 					<div class="col-md-6">
-						<p>Status
-							<%= @article.status %>
-						</p>
+						<% if current_user %>
+						Export : <%= link_to "Excel", article_path(format: "xls") %> | 
+						<%= link_to "PDF", article_path(@article, :format => 'pdf') %>
+						<% end %>
 					</div>
 					<div class="col-md-6">
 						<div class="btn-group pull-right">
 							<%= link_to 'back', root_path, class: "btn btn-default" %>
+							<% if current_user %>
 							<%= link_to 'edit', edit_article_path(@article.id), class: "btn btn-default" %>
 							<%= link_to 'delete', article_path(@article.id), method: "DELETE", data: {confirm: 'Delete this data ? '}, class: "btn btn-default"  %>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -28,19 +33,22 @@
 		</div>
 	</div>
 </div>
+<div id="pin_show" class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-default">
+			<div class = "panel-heading">
+				Add Comment :
+			</div>
+			<div class="panel-body">
+				<div id="form-comment">
+			        <%= render 'form' %>
+			    </div>
+			    <h5>Here the comments :</h5>
+			    <div id="list-comments">
+			        <%= render 'comments' %>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
 
- <div id="form-comment">
-
-        <%= render 'form' %>
-
-    </div>
-
-
-    <h4>Here the comments</h4>
-
-
-    <div id="list-comments">
-
-        <%= render 'comments' %>
-
-    </div>

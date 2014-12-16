@@ -17,6 +17,7 @@
       <% if !current_user %>
         <li><%= link_to "Sign In", new_session_path %></li>
       <% else %>
+        <li><%= link_to 'Add New Article', new_article_path %></li>
         <li><%= link_to 'Log-Out', session_path(current_user.id), method: "DELETE" %></li>
       <% end %>
     </ul>

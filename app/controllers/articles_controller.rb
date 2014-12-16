@@ -3,11 +3,6 @@ class ArticlesController < ApplicationController
   
   def index
   	@articles = Article.paginate(:page => params[:page], :per_page => 3, :order => "created_at DESC")
-    respond_to do |format|
-      format.html
-      format.csv { send_data @articles.to_csv }
-      format.xls #{ send_data @articles.to_csv(col_sep: "\t") }
-    end
   end
 
   def show

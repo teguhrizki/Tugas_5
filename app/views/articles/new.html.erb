@@ -1,37 +1,63 @@
 <div class="row">
+	<div class="col-md-12">	
+		<h1>New Article</h1>
+		<hr/>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6" style="border-right: 1px solid #ccc;">
+		<div class="col-md-11">
+			<%= form_for @article, :html => { :multipart => true} do |f| %>
+			<div class="form-group">
+				<%= f.label :image %>
+				<%= f.file_field :image %>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :title %>
+				<%= f.text_field :title, class: "form-control" %>
+				<%= @article.errors[:title].first unless @article.errors[:title].blank? %>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :content %>
+				<%= f.text_area :content, class: "form-control", cols:30, rows:10 %>
+				<%= @article.errors[:content].first unless @article.errors[:content].blank? %>
+			</div>
+		
+			<div class="form-group">
+				<%= f.label :status %>
+				<%= f.radio_button :status, "active" %>
+				<%= label :article_status, 'active' %>
+				<%= f.radio_button :status, "off", :checked => true %>
+				<%= label :article_status, 'off' %>
+			</div>
+
+			<div class="form-group">
+				<%= f.submit :submit, value: "Submit", class: "btn btn-primary" %>
+				<%= link_to "Back", articles_path, class: "btn btn-default" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
 	<div class="col-md-6">
-		<h1> New Article </h1>
-		<hr>
-		<%= form_for @article, :html => { :multipart => true} do |f| %>
-		<div class="form-group">
-			<%= f.label :image %>
-			<%= f.file_field :image %>
+		<div class="col-md-11"> 
+			<%= form_tag import_articles_path, multipart: true do %>
+			<h4>Import new article with file <i>.csv</i> or <i>.xls</i> or <i>.xlsx</i></h4>
+			<br>
+			<div class="form-group">
+			    <label class="col-sm-1 control-label">File</label>
+			    <div class="col-sm-8">
+			    	<%= file_field_tag :file %>
+			    </div>
+		  	</div>
+		  	<br>
+		  	<div class="form-group">
+			    <div class="col-sm-offset-1 col-sm-8">
+			    	<%= submit_tag "Import", class: "btn btn-default btn-sm" %>
+			    </div>
+		  	</div>
+			<% end %>
 		</div>
-
-		<div class="form-group">
-			<%= f.label :title %>
-			<%= f.text_field :title, class: "form-control" %>
-			<%= @article.errors[:title].first unless @article.errors[:title].blank? %>
-		</div>
-
-		<div class="form-group">
-			<%= f.label :content %>
-			<%= f.text_area :content, class: "form-control", cols:30, rows:10 %>
-			<%= @article.errors[:content].first unless @article.errors[:content].blank? %>
-		</div>
-	
-		<div class="form-group">
-			<%= f.label :status %>
-			<%= f.radio_button :status, "active" %>
-			<%= label :article_status, 'active' %>
-			<%= f.radio_button :status, "off", :checked => true %>
-			<%= label :article_status, 'off' %>
-		</div>
-
-		<div class="form-group">
-			<%= f.submit :submit, value: "Submit", class: "btn btn-primary" %>
-			<%= link_to "Back", articles_path, class: "btn btn-default" %>
-		</div>
-		<% end %>
-	<div>
+	</div>
 </div>

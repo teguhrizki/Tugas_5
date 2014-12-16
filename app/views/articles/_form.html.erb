@@ -1,21 +1,26 @@
+
 <%= form_for @comment, url: comments_path, remote: true do |f| %>
-
-        <%= f.hidden_field :article_id, value: @article.id %>
-
-        <% if current_user %>
-
-            <%= f.hidden_field :user_id, value: current_user.id %>
-
-        <% end %>
-
-        <br/>
-
-        <%= f.label :content %>
-
-        <%= f.text_area :content, cols: 20, rows: 10 %>
-
-        <br/>
-
-        <%= f.submit :submit %>
-
+    <%= f.hidden_field :article_id, value: @article.id %>
+    <% if current_user %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
     <% end %>
+
+    <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content, class: "form-control" %>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group pull-right">
+                <% if current_user %>
+                <%= f.submit :submit, class: "btn btn-primary btn-sm", value: "Add Comment" %>
+                <% else %>
+                <%= link_to "Add Comment", new_session_path, class: "btn btn-primary btn-sm" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+<% end %>

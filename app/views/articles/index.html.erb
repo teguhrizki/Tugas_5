@@ -1,7 +1,11 @@
-<h3>New Article</h3>
-<hr/>
 <div class="row">
-	<div class="col-md-8 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1">	
+		<h3>New Article</h3>
+		<hr/>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
 		<% @articles.each do |article| %>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -15,15 +19,24 @@
 				<h5>Status : <%= article.status %></h5>
 			</div>
 			<div class="panel-footer">
-				<% if current_user %>
-				<%= link_to 'Edit', edit_article_path(article.id), class: "btn btn-sm btn-primary" %>
-				<%= link_to 'Delete', article_path(article.id), class: "btn btn-sm btn-default", method: "DELETE", data: {confirm: 'Delete this data ? '} %>
-				<% end %>
+				<div class="row">
+					<div class="col-md-6">
+					</div>
+					<div class="col-md-6">
+						<div class="pull-right">
+							<% if current_user %>
+							<%= link_to 'Edit', edit_article_path(article.id), class: "btn btn-sm btn-primary" %>
+							<%= link_to 'Delete', article_path(article.id), class: "btn btn-sm btn-default", method: "DELETE", data: {confirm: 'Delete this data ? '} %>
+							<% end %>
+							<%= link_to 'View Comments', article, class: "btn btn-sm btn-default" %>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<hr/>
 		<% end %>
-		<<%= will_paginate @articles %>
+		<%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
 	</div>
 </div>
 

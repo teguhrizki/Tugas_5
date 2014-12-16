@@ -16,6 +16,8 @@ gem 'byebug'
 gem 'will_paginate', '~> 3.0.5'
 gem 'roo'
 gem "iconv", "~> 1.0.3"
+gem 'will_paginate-bootstrap'
+gem 'pdfkit'
 group :doc do
   gem 'sdoc', require: false
 end
